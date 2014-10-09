@@ -1,0 +1,9 @@
+/*Styles for bootstrap affix*/
+.header-wrapper { height: 65px; }
+.affix { 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}

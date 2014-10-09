@@ -1,0 +1,137 @@
+/*Basic Browser Resets and Clearfix*/
+html, body {
+    margin: 0;
+    padding: 0;
+}
+a { 
+    text-decoration: none; 
+    cursor: pointer;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/*Basic Styles*/
+body {
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+}
+
+/*FMA*/
+.fma .box { height: 350px; }
+
+/*Header*/
+.header-wrapper { height: 94px; }
+header { padding: 20px 30px; }
+header .logo { width: 150px; }
+header .logo .box { padding: 15px 0; }
+
+/*Navigation*/
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 15px 0;
+    float: right;
+}
+nav ul li {
+    display: inline;
+    padding: 0 20px;
+    border-right: 1px solid #FFF ;
+}
+nav ul li:last-child { 
+    padding-right: 0; 
+    border: none;
+}
+nav ul li a { color: #FFF; }
+
+/*Sticky Nav*/
+.stick { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+/*Spotlights*/
+.spotlights { margin-top: 60px; margin-bottom: 60px; }
+.spotlights .spotlight .box { height: 250px; }
+.spotlights .spotlight .copy { padding: 0 5px; }
+
+/*Call to Action*/
+.cta { 
+    text-align: center; 
+    padding: 30px 0 45px;
+}
+.cta h2 { 
+    font-family: "Arial Black", Gadget, sans-serif;
+    margin: 0; 
+    text-transform: uppercase;
+}
+.cta p {
+    margin: 0 0 30px 0;
+    font-size: 1.3em;
+}
+.cta .btn { 
+    background: #0f85b3;
+    border-radius: 6px;
+    color: #FFF;
+    padding: 15px 30px;
+}
+
+/*Footer*/
+footer { 
+    padding: 30px; 
+    text-align: center;
+}
+footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: #FFF;
+}
+footer ul li {
+    display: inline; 
+    padding: 0 15px;
+}
+footer ul li a { color: #FFF; }
+
+/*Mobile Nav*/
+@media only screen and (max-width: 768px){
+    header { padding: 20px 5px;}
+    .logo { float: right; }
+    a.mobile-open { 
+        color: #FFF; 
+        float: left;
+        padding: 15px 0;
+        font-size: 1.8em;
+        line-height: 22px;
+    }
+    nav { 
+        position: fixed; 
+        top: 0;
+        left: -100%;
+        height: 100%;
+        width: 100%;
+    }
+    nav ul {
+        float: none;
+        padding: 0;
+    }
+    nav ul li {
+        display: block;
+        border-right: none;
+        border-bottom: 1px solid #FFF;
+        padding: 15px 0;
+    }
+    nav ul li.mobile-close { 
+        border: none;
+        text-align: right; 
+        font-size: 1.8em;
+    }
+
+    .spotlights .spotlight { margin-bottom: 20px; }
+    footer ul li { display: block; }
+}

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Class 1 - Introduction and Navigation</title>
+
+        <!-- Basic Responsive Styles-->
+        <link href='assets/css/responsive.css' rel='stylesheet' type='text/css'>
+        <link href='assets/css/class.css' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+
+        <main>
+            <div class="narrow">
+
+                <h1>Prototyping with JS</h1>
+          
+                <p>In these classes we'll explore some JavaScript techniques, patterns, and frameworks for quickly producing functional prototypes. This first class will consist of three parts:</p>
+
+                <ol>
+                    <li>A brief <strong>introduction</strong> to wireframing with HTML5/CSS.</li>
+                    <li><strong>Coding</strong> from scratch two functional navigation components - a sticky nav, and a mobile slide out.</li>
+                    <li>A quick look at twitter's <strong>Bootstrap</strong>, a frontend framework perfectly suited for rapidly producing responsive prototypes.</li>
+                </ol>
+
+                <hr/>
+                
+                <h2>I. Introduction HTML/CSS</h2>
+
+                <h3>Navigation Markup</h3>
+                <p>Frist, let's take a look at the markup for the navigation component that we are going to be styling and manipulating:</p>
+
+<pre>
+    &lt;!-- Sticky Header --&gt;
+    &lt;div class="header-wrapper"&gt;
+        &lt;header class="dark" data-target="stickynav"&gt;
+            &lt;div class="container"&gt;
+                &lt;div class="row"&gt;
+
+                    &lt;!-- LOGO Column --&gt;
+                    &lt;div class="col-3"&gt;
+                        &lt;a class="mobile-open show-mobile" data-toggle="slideout"&gt;=&lt;/a&gt;
+                        &lt;div class="logo"&gt;
+                            &lt;div class="box white"&gt;
+                                &lt;p&gt;LOGO&lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;!-- NAV Column --&gt;
+                    &lt;nav class="col-9 dark" data-target="slideout"&gt;
+                        &lt;ul&gt;
+                            &lt;li class="mobile-close show-mobile"&gt;
+                                &lt;a data-toggle="slideout"&gt;=&lt;/a&gt;
+                            &lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Categories&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Search&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/nav&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/header&gt;
+    &lt;/div&gt;
+</pre>
+                <p>Pretty straightforward, but there are some details worth noting. The first thing you may notice is that a number of the elements include attributes that start with "data-". HTML5 lets us include extra information with our markup using what are called <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes"><strong>data attributes</strong></a>. In this example we'll use these data attributes as flags for our Javascript to associate these elements with particular functionalities. Using this approach we can maintain a separation of concerns between our presentation layer (targeted with classes and ids) and our interactive functionalities (targeted and customized using data attributes).</p>
+                
+                <h3>Sticky Navigation CSS</h3>
+
+                <p>For our sticky nav functionality we'll need to create a class we can add to our navigation that contains the styles to fix it to the top of the screen: </p>
+
+<pre>
+    /*Sticky Nav*/
+    .stick { 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+</pre>
+
+                <h3>Mobile Navigation CSS</h3>
+
+                <p>For our mobile navigation drawer we'll need to update the styles for our &lt;nav&gt; element so that it will take up the full size of the window and start off positioned off screen:</p>
+
+<pre>
+    @media only screen and (max-width: 768px){
+
+        ...
+        nav { 
+            position: fixed; 
+            top: 0;
+            left: -100%;
+            height: 100%;
+            width: 100%;
+        }
+        ...
+
+    }
+</pre>
+                <p>In that last bit of CSS you probably noticed this line: </p>
+<pre>
+    @media only screen and (max-width: 768px)
+</pre>
+                <p>This is called a <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries"><strong>media query</strong></a> and was added to the CSS3 specification to allow the styling of content to be tailored to the size of the output display.</p>
+                <hr/>
+
+                <h2>II. Javascript</h2>
+
+                <p>We're ready to start writing the code for our components. If you go into the <em>workspace</em> directory in this folder you will find an index.html file, a directory with the styles will need and a JS folder that contains stub files. First let's work on the sticky navigation, so open up stickynav.js:</p>
+                <h3>Sticky Navigation</h3>
+
+                <p>In stickynav.js you'll find this snippet:</p>
+
+<pre>
+    (function stickynav($){
+
+    }(jQuery));
+</pre>
+
+                <p>This is the anonymous function into which we will put all of our sticky nav functionality. First we need to select the element that will be the target for our animation, as mentioned above we will use data attributes as selectors for our functionality:</p>
+<pre>
+        //The sticky nav element
+    var $stickynav = $('[data-target="stickynav"]'),
+</pre>
+
+                <p>This code finds all of the elements on the page with a data-target attribute that equals "stickynav". Now that we have our targets let's start adding in some of our central logic:</p>
+
+
+<pre>
+    //If there is a sticky nav on the page, run sticky code
+    if($stickynav.length > 0){
+        
+        //MAIN CODE HERE
+
+    }
+</pre>
+
+
+            <p>The main body of our code we will wrap in an if statement that will check for the presence of any sticky nav elements on the page, if there are none there's no need to run our code.</p>
+
+            <p>Once we have established that there are sticky navs present the next piece of information we need to get is the initial position of our target. More specifically we need its offset from the top of the page at page load, this will be the point we will compare the users scroll position against to determine if the user has reached the nav point and it should therefore become stuck. jQuery provides an offset() utility function that returns a selection's distance from the top and left of the current document:</p>
+
+<pre>
+    //Get "sticky" point, by finding the navigation's distance from the top of the page
+    var stickPosition = $stickynav.offset().top;
+</pre>
+
+            <p>All we care about is the vertical distance, so we create a variable called stickPosition that contains that top offset.</p>
+
+            <p>Next we will need to write a function that contains the central logic of our functionality, which can be broken down to:</p>
+            
+            <div class="logic">
+            <p>Get the user's current scroll position
+                    <ul>
+                        <li>IF the user has scrolled up to or beyond the navigation element, affix the navigation to the top of the window</li>
+                        <li>ELSE IF the user has not scrolled to the navigation point, leave the navigation to use the default styling</li>
+                    </ul>
+            </p>
+            </div> 
+
+            <p>To turn that into code we'll make a function called "checkIfStuck" in which we will use jQuery's scrollTop() utility to get the current scroll position, we will compare that to the stickPosition variable we created earlier:</p>
+
+
+<pre>
+    //Function to check wether scroll position means nav should be stuck or not
+    function checkIfStuck(){
+
+        //If scroll has passed nav position add the stick class to fix its position
+        if($(window).scrollTop() > stickPosition) {
+            $stickynav.addClass("stick");
+        
+        //If scroll is above nav position remove stick class
+        }else{
+            $stickynav.removeClass("stick");
+        }
+
+    }
+</pre>
+
+        <p>To update the styles within the logic block we simply add or remove the "stick" class, which (as we saw above) contains the positioning styles which will affix the navigation to the top of the window.</p>
+
+        <p>That is all the logic we need, all that is left now is to call our checkIfStuck() function. We will call it twice, once when the code initially executes (the user may be in a scrolled position when the page is refreshed) and again every time that the user scrolls so that we have an updated scroll position to compare against:</p>
+
+<pre>
+    //Check the initial scroll position against the target
+    checkIfStuck();
+
+    //When the page is scrolled, compare scroll against stick position
+    $(document).scroll(function(){
+        checkIfStuck();
+    });
+</pre>
+
+            <h3>Mobile Navigation Slide Out</h3>
+
+            <p>For the mobile navigation slide out we start with a similar anonymous function into which we'll put our code. As before we'll start by targeting the elements that we will be using. Here we will also create a variable to keep track of our state (is the navigation "out" or not):</p>
+
+<pre>
+    /*Mobile Navigation Slideout*/
+    (function slideout($){
+        
+            //The slide out element
+        var $slideout = $('[data-target="slideout"]'),
+
+            //Elements that trigger the slideout
+            $slideToggles = $('[data-toggle="slideout"]'),
+
+            //The current slide state, starts out false
+            out = false;
+
+    }(jQuery));
+</pre>
+            <p>As you can see we select for the navigation element which we will be animating,  using the "data-target" attribute again, but we also create a selector for our "slideToggles" the buttons that will trigger the navigation area to animate in and out. Then we create a variable called "out" that will track the state of our animating nav (at initialization it will be set to false, since our nav will start out hidden).</p>
+
+            <p>We have all the elements we need, now we just need to determine our central logic. It can be described as something like:</p>
+
+            <div class="logic">
+                <p>When the user clicks one of the toggle buttons update the state of our navigation and animate:</p>
+                <ul>
+                    <li>IF the navigation is currently "out", animate the navigation to the right until it is visible</li>
+                    <li>ELSE IF the navigation is currently not "out", animate the navigation to the left until it is off screen</li>
+                </ul>
+            </div>
+
+            <p>Translating this logic into code, we will first create an event listener, which is a method that listens for a particular type of event to be triggered on an element (as determined by the browser) and then performs a provided function any time that event is triggered (this function is called a callback). We will add our event listener using jQuery's on() function. We tell it that we want to listen for 'click' events and then we will pass it the function we want called every time a click is registered on one of our toggles.</p>
+
+<pre>
+    //If there is a slideout element on the page, run slideout code
+    if($slideout.length > 0){
+
+        //When slide trigger is clicked toggle the state of the slideout tray
+        $slideToggles.on('click', function(){
+            //Toggle the state
+            out = !out;
+
+            //Animate the slide, choose direction based on state
+            $slideout.animate({ 'left' : ( out ? '0' : '-100%') }, 'slow' );
+        });
+
+    }
+</pre>
+
+            <p>As you can see that function mirrors our logic from above. First we will update the state of our animation, by reversing its Boolean value (true becomes false, false becomes true). Then we will animate the left position of our element based on whether it should now be out or not. This part of the code may look a bit strange:</p>
+
+<pre>
+    ( out ? '0' : '-100%')
+</pre>
+
+            <p>It is just a common shorthand that Javascript provides us for returning a value based on IfElse logic. We could express the same thing like this:</p>
+
+<pre>
+    var newPosition; 
+
+    if(out){
+        newPosition = '0';
+    }else{
+        newPosition = '-100%';
+    }
+
+    $slideout.animate({ 'left' : newPosition }, 'slow' );    
+</pre>
+            <p>Either way we are updating the css 'left' position of our element to be either -100% to the left (meaning the full object is off the screen to the left) or shifting it to appear 0 pixels from the left of the screen (meaning that it is fully in view). That is all that we need for our mobile navigation slideout.</p>
+            
+            <p>Now that we have walked through these two components your prototype should be working like the <a href="basic/index.html">basic example</a> in this directory.</p>
+            
+            <hr/>
+
+            <h2>III. Bootstrap</h2>
+
+            <p>Using a front end framework can be a great way to quickly turn around a responsive prototype that includes some common interactive elements. Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> is a framework that is used widely used in production applications, but is also a very powerful tool for prototyping quickly. It comes with a baked in responsive grid system and a toolkit of very common <a href="http://getbootstrap.com/javascript/">Javascript UI components</a>.</p>
+
+            <p>To give you an idea of how this framework could be useful for interactive prototyping, included in this directory is a similar example to the page we've just been working on, but using <a href="bootstrap/index.html">Bootstrap</a>. As you can see the UI looks a bit more polished already, and required much less custom CSS, almost everything is styled according to Bootstrap's default styles. Also, this example includes no custom Javascript, but only uses Bootstrap's built in components. With that limitation we are able to have a sticky nav like the one we coded.</p>
+
+            <p>Bootstrap has no navigation slideout, so you can see that its collection of components is not exhaustive, however it does offer a mobile "collapsed" nav which is another popular mobile alternative.</p>
+
+            </div>
+        </main> 
+    </body>
+</html>

@@ -1,0 +1,26 @@
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+.narrow {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+ol li { margin-bottom: 1em; }
+hr { 
+    border: none; 
+    border-bottom: 1px solid #ACACAC;
+    margin: 30px 0; 
+}
+
+pre { 
+    background: #EFEFEF; 
+    padding: 15px 0;
+}
+
+a {  color: #333; }
+
+.logic { border: 1px solid #EFEFEF; padding: 15px; }
